@@ -24,7 +24,6 @@
 
 **Languages and Tools:** 
 
--->
 <p align="center">
 
   <div align="center" class="tech-icons">
