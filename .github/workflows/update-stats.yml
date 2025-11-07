@@ -1,0 +1,48 @@
+name: Update Github Stats Panel
+on:
+  schedule: 
+    - cron: "0 0 * * *"   # Her gün 00:00'da
+    - cron: "0 12 * * *"  # Her gün 12:00'de
+  workflow_dispatch:
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Get GitHub Account Stats
+        run: |
+          # GitHub kullanıcı bilgilerini al
+          USER_DATA=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/user)
+          
+          # Hesap oluşturma tarihi
+          CREATED_AT=$(echo $USER_DATA | jq -r '.created_at')
+          echo "📅 Hesap Oluşturma Tarihi: $CREATED_AT"
+          
+          # Public repository'leri al
+          REPOS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/user/repos?type=public&per_page=100")
+          
+          # Repo sayısı
+          REPO_COUNT=$(echo $REPOS | jq '. | length')
+          echo "📊 Public Repository Sayısı: $REPO_COUNT"
+          
+          # Repo isimleri
+          echo "📦 Repository İsimleri:"
+          REPO_LIST=$(echo $REPOS | jq -r '.[].name' | tr '\n' ',' | sed 's/,$//')
+          echo "$REPO_LIST"
+          
+          # README.md dosyasını güncelle
+          sed -i "s/Account created:.*/Account created: $CREATED_AT/" README.md
+          sed -i "s/Repositories:.*/Repositories: $REPO_COUNT ($REPO_LIST)/" README.md
+
+      - name: Commit and Push Stats
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "🔄 Update GitHub stats"
+          git push
