@@ -43,14 +43,14 @@
   </div>
 
 <style>
-.tech-icons img {
-  border-radius: 20px;
-  transition: 0.3s ease;
-}
-.tech-icons img:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
+  .tech-icons img {
+    border-radius: 20px;
+    transition: 0.3s ease;
+  }
+  .tech-icons img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
 </style>
 
 <br/>
