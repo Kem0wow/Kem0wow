@@ -30,7 +30,7 @@
 **Main Projects**
 
 <p align="center">
-  <a href="https://github.com/stars/Kem0wow/lists/main-projects">
+  <a href="https://github.com/stars/Kem0wow/lists/active-projects">
     <img src="https://img.shields.io/badge/GitHub-Active Projects List-blue?logo=github&logoColor=white" alt="GitHub Repo"/>
   </a>
 </p>
