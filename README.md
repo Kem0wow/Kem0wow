@@ -4,7 +4,6 @@
 [Linkedin](https://www.linkedin.com/in/kemaldeniztastan/) -
 [Kaggle](https://www.kaggle.com/kemaldeniztastan) -
 [HuggingFace](https://huggingface.co/Kem0w) -
-[Instagram](https://www.instagram.com/bayqamal77) -
 [Gmail](mailto:kdtastan@gmail.com)
 &nbsp;
 
